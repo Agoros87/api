@@ -6,8 +6,5 @@ use App\Models\Category;
 
 abstract class Controller
 {
-    public function index()
-    {
-        return Category::all();
-    }
+
 }
