@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
@@ -23,6 +24,14 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
+        $data = $request->all();
+
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = Str::uuid() . '.' . $file->extension();
+            $file->storeAs('categories', $name , 'public');
+            $data['photo'] = $name;
+        }
     $category = Category::create($request->all());
 
     return new CategoryResource($category);
@@ -42,17 +51,11 @@ class CategoryController extends Controller
     }
 
 
-
     public function list()
     {
         return CategoryResource::collection(Category::all());
     }
 
-    public function messages()
-    {
-        return [
-            'name.required' => 'El campo nombre es obligatorio',
-        ];
-    }
+
 
 }
