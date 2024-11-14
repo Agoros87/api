@@ -1,0 +1,268 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://api.test'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/lists/categories:
+    get:
+      summary: ''
+      operationId: getApiListsCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: 'est reiciendis molestiae'
+                    -
+                      id: 2
+                      name: 'consequatur quasi ex'
+                    -
+                      id: 3
+                      name: 'odio odit nisi'
+                    -
+                      id: 4
+                      name: 'commodi ipsa error'
+                    -
+                      id: 5
+                      name: 'ut officia dolor'
+                    -
+                      id: 6
+                      name: 'esse sunt non'
+                    -
+                      id: 7
+                      name: 'neque doloribus voluptatum'
+                    -
+                      id: 8
+                      name: 'laboriosam iusto sunt'
+                    -
+                      id: 9
+                      name: 'ut atque quasi'
+                    -
+                      id: 10
+                      name: 'asperiores consequatur incidunt'
+                    -
+                      id: 12
+                      name: 'Categoria con fichero'
+                    -
+                      id: 13
+                      name: 'Categoria con fichero'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'est reiciendis molestiae'
+                      -
+                        id: 2
+                        name: 'consequatur quasi ex'
+                      -
+                        id: 3
+                        name: 'odio odit nisi'
+                      -
+                        id: 4
+                        name: 'commodi ipsa error'
+                      -
+                        id: 5
+                        name: 'ut officia dolor'
+                      -
+                        id: 6
+                        name: 'esse sunt non'
+                      -
+                        id: 7
+                        name: 'neque doloribus voluptatum'
+                      -
+                        id: 8
+                        name: 'laboriosam iusto sunt'
+                      -
+                        id: 9
+                        name: 'ut atque quasi'
+                      -
+                        id: 10
+                        name: 'asperiores consequatur incidunt'
+                      -
+                        id: 12
+                        name: 'Categoria con fichero'
+                      -
+                        id: 13
+                        name: 'Categoria con fichero'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'est reiciendis molestiae'
+      tags:
+        - Endpoints
+      security: []
+  /api/categories:
+    get:
+      summary: ''
+      operationId: getApiCategories
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiCategories
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: aliquid
+                  nullable: false
+              required:
+                - name
+      security: []
+  '/api/categories/{id}':
+    get:
+      summary: ''
+      operationId: getApiCategoriesId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: quibusdam
+                  nullable: false
+              required:
+                - name
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/products:
+    get:
+      summary: ''
+      operationId: getApiProducts
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
