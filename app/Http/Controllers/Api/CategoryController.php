@@ -11,35 +11,40 @@ use Illuminate\Support\Str;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @group Categories
- * Managing categories
- */
+
 class CategoryController extends Controller
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     * Getting the list of the categories
+     * @OA\Get (
+     *     path="/categories",
+     *     tags={"Categories"},
+     *     summary="Get List of categories",
+     *     @OA\Response(
+     *          response=200,
+     *          description="Succesfull operation",
+     *          ),
+     *    @OA\Response(
+     *          response=401,
+     *           description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *      ),
+     * )
      */
     public function index()
     {
         abort_if(!auth()->user()->tokenCan('categories-list'),403);
         return CategoryResource::collection(Category::all());
     }
-    #[Endpoint('Show category' ,description: 'Get a specific category')]
+
     public function show(Category $category)
     {
         abort_if(!auth()->user()->tokenCan('categories-show'),403);
         return new CategoryResource($category);
     }
-    /**
-     * Store a new category
-     *
-     * Creating a new category
-     *
-     * @bodyParam name string required The name of the category. Example: Electronics
-     *
-     */
+
     public function store(StoreCategoryRequest $request)
     {
         $data = $request->all();
