@@ -7,28 +7,6 @@ servers:
   -
     url: 'http://api.test'
 paths:
-  /api/user:
-    get:
-      summary: ''
-      operationId: getApiUser
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
   /api/lists/categories:
     get:
       summary: ''
@@ -130,8 +108,7 @@ paths:
                           type: string
                           example: 'est reiciendis molestiae'
       tags:
-        - Endpoints
-      security: []
+        - Categories
   /api/categories:
     get:
       summary: ''
@@ -152,8 +129,7 @@ paths:
                     type: string
                     example: Unauthenticated.
       tags:
-        - Endpoints
-      security: []
+        - Categories
     post:
       summary: ''
       operationId: postApiCategories
@@ -161,7 +137,7 @@ paths:
       parameters: []
       responses: {  }
       tags:
-        - Endpoints
+        - Categories
       requestBody:
         required: true
         content:
@@ -172,15 +148,74 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: aliquid
+                  example: quia
                   nullable: false
               required:
                 - name
-      security: []
   '/api/categories/{id}':
     get:
+      summary: 'Show category'
+      operationId: showCategory
+      description: 'Get a specific category'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Categories
+    put:
       summary: ''
-      operationId: getApiCategoriesId
+      operationId: putApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: sit
+                  nullable: false
+              required:
+                - name
+    delete:
+      summary: ''
+      operationId: deleteApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Categories
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
       description: ''
       parameters: []
       responses:
@@ -198,48 +233,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
-    put:
-      summary: ''
-      operationId: putApiCategoriesId
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: ''
-                  example: quibusdam
-                  nullable: false
-              required:
-                - name
-      security: []
-    delete:
-      summary: ''
-      operationId: deleteApiCategoriesId
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the category.'
-        example: 1
-        required: true
-        schema:
-          type: integer
   /api/products:
     get:
       summary: ''
@@ -260,9 +253,23 @@ paths:
                     type: string
                     example: Unauthenticated.
       tags:
-        - Endpoints
-      security: []
+        - Products
 tags:
+  -
+    name: Categories
+    description: 'APIs for managing categories'
   -
     name: Endpoints
     description: ''
+  -
+    name: Products
+    description: 'APIs for managing products'
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []
